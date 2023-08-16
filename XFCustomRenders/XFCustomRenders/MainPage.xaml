@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XFCustomRenders.Controls"
+    xmlns:vm="clr-namespace:XFCustomRenders.ViewModels"
+    x:Class="XFCustomRenders.MainPage">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout>
+        <local:CustomHeaderView
+            Text="Simple HeaderView"
+            TextColor="Orange"
+            TappedOrClickEvent="ChangeText" />
+        
+        <local:CustomControl />
+        
+        <local:MyCustomControl 
+            MyProperty="{Binding Name}"
+            MyCommand="{Binding CommandTap}" />
+        
+        <local:CustomGrid
+            Data="{Binding Data}" />
+        
+        <local:TotalsGridControlNew
+            HorizontalOptions="Center"
+            BackgroundColor="LightBlue"
+            Totals="{Binding Totals}" />
+        
+        <local:ButtonExt
+            Margin="5"
+            BorderColor="Red"
+            ColorTap="#00BEF0"
+            CornerRadius="20"
+            HorizontalTextAlignment="Center"
+            Text="ButtonExt"
+            TextColor="Black"
+            VerticalTextAlignment="Center" />
+
+        <local:ScrollButtonsExt
+            Margin="5"
+            ItemsSource="{Binding TypeItems}"
+            SelectedColor="#00BEF0"
+            SelectedIndex="{Binding SelectedType}"
+            Spacing="10"
+            UnselectedColor="#C4CAD1"
+            WidthRule="1*, 1*">
+            <DataTemplate>
+                <local:ButtonExt
+                    x:DataType="x:String"
+                    CornerRadius="20"
+                    HasShadow="False"
+                    HorizontalTextAlignment="Center"
+                    InnerPadding="10"
+                    Text="{Binding .}"
+                    TextColor="#FFF"
+                    VerticalTextAlignment="Center" />
+            </DataTemplate>
+        </local:ScrollButtonsExt>
+        <Label
+            Text="{Binding SelectedType, Mode=TwoWay}" />
+    </StackLayout>
+
+</ContentPage>
