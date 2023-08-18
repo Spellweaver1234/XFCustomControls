@@ -11,7 +11,12 @@ namespace XFCustomRenders.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
+            // для ускорения сборки
+#if DEBUG
+            Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+#else
+    // код для релиз-режима
+#endif
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

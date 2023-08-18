@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Foundation;
 
-using Foundation;
 using UIKit;
 
 namespace XFCustomRenders.iOS
@@ -22,6 +19,12 @@ namespace XFCustomRenders.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            // для ускорения сборки
+#if DEBUG
+            Xamarin.Forms.Forms.SetFlags("FastRenderers_Experimental");
+#else
+    // код для релиз-режима
+#endif
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
